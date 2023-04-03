@@ -68,9 +68,9 @@
 				<artifactId>snyk-maven-plugin</artifactId>
 				<version>2.0.0</version>
 				<inherited>false</inherited>
-<!--				<configuration>-->
-<!--					<org>asecurityguru</org>-->
-<!--				</configuration>-->
+				<configuration>
+					<org>mpuertao</org>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
