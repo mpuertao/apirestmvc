@@ -57,7 +57,7 @@
 		</dependency>
 	</dependencies>
 
-	<!-- Example Plugin Configuration -->
+
 	<build>
 		<plugins>
 			<plugin>
@@ -67,29 +67,13 @@
 			<plugin>
 				<groupId>io.snyk</groupId>
 				<artifactId>snyk-maven-plugin</artifactId>
-				<version>2.0.0</version>
+				<version>2.2.0</version>
 				<inherited>false</inherited>
-				<executions>
-					<execution>
-						<id>snyk-test</id>
-						<goals>
-							<goal>test</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>snyk-monitor</id>
-						<goals>
-							<goal>monitor</goal>
-						</goals>
-					</execution>
-				</executions>
 				<configuration>
-					<apiToken>ae127fa7-55f5-4083-93e0-7516e5065f30</apiToken>
-					<args>
-						<arg>--all-projects</arg>
-					</args>
+					<org>mpuertao</org>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
