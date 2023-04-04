@@ -44,13 +44,13 @@ pipeline {
         }
         stage ('wait_for_testing'){
         	   steps {
-        		   sh 'pwd; sleep 180; echo "Application Has been deployed on K8S"'
+        		   sh 'pwd; sleep 90; echo "Application Has been deployed on K8S"'
         	   	}
         	   }
 
         stage('RunDASTUsingZAP') {
                steps {
-        	        withKubeConfig([credentialsId: 'kubelogin']) {
+        	        withKubeConfig([credentialsId: 'kubeconfig']) {
         				sh('zap.sh -cmd -quickurl http://$(kubectl get services/apirest --namespace=devsecops -o json| jq -r ".status.loadBalancer.ingress[] | .hostname") -quickprogress -quickout ${WORKSPACE}/zap_report.html')
         				archiveArtifacts artifacts: 'zap_report.html'
         		    }
