@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  APIREST
+  name:  apirest
   namespace: default
   labels:
-    app:  APIREST
+    app:  apirest
 spec:
   selector:
     matchLabels:
-      app: APIREST
+      app: apirest
   replicas: 2
   strategy:
     rollingUpdate:
@@ -18,10 +18,10 @@ spec:
   template:
     metadata:
       labels:
-        app:  APIREST
+        app:  apirest
     spec:
       containers:
-      - name:  APIREST
+      - name:  apirest
         image:  732629678930.dkr.ecr.us-east-1.amazonaws.com/mao-ecr-eks:latest
         imagePullPolicy: Always
         resources:
@@ -37,14 +37,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: APIREST
-  namespace: devsecops
+  name: apirest
 spec:
   selector:
-    app: APIREST
+    app: apirest
   type: LoadBalancer
   ports:
-    - name: APIREST
+    - name: apirest
       protocol: TCP
       port: 80
       targetPort: 8080
