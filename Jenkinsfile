@@ -16,7 +16,7 @@ pipeline {
     			}
     		}
         }
-        stage('Build') {
+        stage('Build Image') {
             steps {
                 withDockerRegistry([credentialsId: "dockerlogin", url: ""]){
                     script{
@@ -25,12 +25,20 @@ pipeline {
                 }
             }
         }
-        stage('Push') {
+        stage('Push Image') {
             steps{
                 script{
                     docker.withRegistry('https://732629678930.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:aws-credentials') {
                         app.push("latest")
                     }
+                }
+            }
+        }
+        stage('Deploy k8s - API Rest'){
+            steps{
+                withKubeConfig([credentialsId: 'kubeconfig']){
+                    sh('kubectl delete all --all -n devsecops')
+                    sh('kubectl apply -f deployment.yml --namespace=devsecops')
                 }
             }
         }
