@@ -37,7 +37,7 @@ pipeline {
         stage('Deploy k8s - API Rest'){
             steps{
                 withKubeConfig([credentialsId: 'kubeconfig']){
-                    sh('kubectl delete all --all -n devsecops')
+                    //sh('kubectl delete all --all -n devsecops')
                     sh('kubectl apply -f deployment.yml --namespace=devsecops')
                 }
             }
